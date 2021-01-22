@@ -1,5 +1,5 @@
 const express = require('express')
-const dogs = require('../../store/dog.store')
+const dogs = require('../../store/dogs')
 const Queue = require('../queue/Queue')
 
 const dogsRouter = express.Router()

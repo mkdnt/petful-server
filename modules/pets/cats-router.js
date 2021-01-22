@@ -1,5 +1,5 @@
 const express = require('express')
-const cats = require('../../store/cat.store')
+const cats = require('../../store/cats')
 const Queue = require('../queue/Queue')
 
 const catsRouter = express.Router()

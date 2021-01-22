@@ -11,9 +11,9 @@ app.use(cors({
   origin: CLIENT_ORIGIN
 }));
 
-app.use('/people', require('../people/people-router'))
-app.use('/cats', require('../pets/cats-router'))
-app.use('/dogs', require('..pets/dogs-router'))
+app.use('/people', peopleRouter)
+app.use('/cats', catsRouter)
+app.use('/dogs', dogsRouter)
 
 app.get('/', (req, res) => {
   res.send('This is the Petful API!')
