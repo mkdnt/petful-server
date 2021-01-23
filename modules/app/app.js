@@ -3,7 +3,7 @@ const cors = require('cors');
 const peopleRouter = require('../people/people-router');
 const catsRouter = require('../pets/cats-router');
 const dogsRouter = require('../pets/dogs-router');
-const {CLIENT_ORIGIN} = require('../config')
+const { CLIENT_ORIGIN } = require('../../config')
 
 const app = express();
 
