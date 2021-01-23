@@ -15,5 +15,8 @@ app.use('/people', peopleRouter)
 app.use('/cats', catsRouter)
 app.use('/dogs', dogsRouter)
 
+app.get('/', (req, res) => {
+  res.send('This is the Petful API...')
+})
 
 module.exports = app
