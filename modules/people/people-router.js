@@ -4,7 +4,6 @@ const people = require('../../store/people')
 const Queue = require('../queue/Queue')
 
 const peopleRouter = express.Router()
-const peopleQueue = new Queue() //TODO: axe this if it does nothing
 
 function shuffleArray(array) {
   for (var i = array.length - 1; i > 0; i--) {
