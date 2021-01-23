@@ -21,7 +21,6 @@ peopleRouter
     res.status(200).json(people)
   })
   .post(jsonBodyParser, (req, res, next) => {
-    console.log(req.body)
     if (!req.body.person) {
       res.status(400).json('Must enter name')
     }
