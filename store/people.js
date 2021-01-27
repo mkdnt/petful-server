@@ -1,7 +1,9 @@
   const people = [
     'Randy Lahey',
     'Trevor Cory',
-    'Jim Lahey'
+    'Jim Lahey',
+    'Jeff Buda',
+    'Guy Really'
   ]
 
   module.exports = people;
