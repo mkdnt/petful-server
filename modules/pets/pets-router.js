@@ -6,7 +6,7 @@ const { CatService, DogService } = require('./pets-service');
 const router = express.Router();
 
 router
-  .route('/api/cat')
+  .route('/cat')
   .get((req, res, next) => {
     const cats = CatService.getCats();
     if (!cats) {
@@ -27,7 +27,7 @@ router
   });
 
 router
-  .route('/api/dog')
+  .route('/dog')
   .get((req, res) => {
     const dogs = DogService.getDogs();
     if (!dogs) {

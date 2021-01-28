@@ -8,7 +8,7 @@ const PeopleService = require('./people-service');
 const router = express.Router();
 
 router
-  .route('/api/people')
+  .route('/people')
   .get((req, res, next) => {
     const people = PeopleService.getAllPeople();
     if (!people) {
