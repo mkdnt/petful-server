@@ -1,32 +1,42 @@
-const express = require('express')
-const jsonBodyParser = express.json()
-const people = require('../../store/people')
-const Queue = require('../queue/Queue')
+'use strict';
 
-const peopleRouter = express.Router()
+const express = require('express');
+const json = require('body-parser').json();
 
-function shuffleArray(array) {
-  for (var i = array.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1))
-    var temp = array[i]
-    array[i] = array[j]
-    array[j] = temp
-  }
-}
+const PeopleService = require('./people-service');
 
-peopleRouter
-  .route('/')
+const router = express.Router();
+
+router
+  .route('/api/people')
   .get((req, res, next) => {
-    shuffleArray(people)
-    res.status(200).json(people)
-  })
-  .post(jsonBodyParser, (req, res, next) => {
-    if (!req.body.person) {
-      res.status(400).json('Must enter name')
+    const people = PeopleService.getAllPeople();
+    if (!people) {
+      return res.status(400).error({
+        error: 'The line is empty.',
+      });
     }
-    let newPerson = req.body.person
-    people.push(newPerson)
-    res.status(201).json(newPerson)
+    return res.json(people);
   })
+  .delete((req, res, next) => {
+    const people = PeopleService.removeAdopter();
+    if (!people) {
+      return res.status(400).json({
+        error: 'The line is empty.',
+      });
+    }
+    return res.json(people);
+  })
+  .post(json, (req, res, next) => {
+    const { name } = req.body;
+    const newName = name;
 
-module.exports = peopleRouter
+    if (!name) {
+      return res.status(400).json({
+        error: 'Name required.',
+      });
+    }
+    res.json(PeopleService.newAdopter(newName));
+  });
+
+module.exports = router;

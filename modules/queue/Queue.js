@@ -1,9 +1,9 @@
+'use strict';
 class _Node {
-    constructor(value) {
-        this.value = value;
-        this.next = null;
-        this.prev = null;
-    }
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
 }
 
 class Queue {
@@ -15,48 +15,53 @@ class Queue {
   enqueue(data) {
     const node = new _Node(data);
 
-        if (this.first === null) {
-            this.first = node;
-        }
-
-        if (this.last) {
-          node.prev = this.last
-          this.last.next = node;
-        }
-        this.last = node;
+    if (this.first === null) {
+      this.first = node;
+    }
+    if (this.last) {
+      this.last.next = node;
+    }
+    this.last = node;
   }
 
   dequeue() {
-    //if the queue is empty, there is nothing to return
-           if (this.first === null) {
-               return;
-           }
-           const node = this.first;
-           this.first = node.next;
-            //if this is the last item in the queue
-           if (node === this.last) {
-               this.last = null;
-           }
-           return node.value;
+    if (this.first === null) {
+      return;
+    }
+    const node = this.first;
+    this.first = this.first.next;
+    if (node === this.last) {
+      this.last === null;
+    }
+    return node.value;
+  }
+  peek() {
+    return this.first.value;
+  }
+
+  isEmpty() {
+    if (this.first === null) {
+      return null;
+    }
   }
 
   show() {
-    // Return the next item in the queue.
-    if (!this.first) return null;
-    return this.first.value
-  }
-
-  all() {
-    // Return all items in the queue.
-    let arr = [];
-    let node = this.first;
-
-    while (node) {
-      arr.push(node.value);
-      node = node.next;
+    let currentNode = this.first;
+    while (currentNode !== null) {
+      currentNode = currentNode.next;
     }
-    return arr;
   }
 }
 
-module.exports = Queue
+const displayQ = (queue) => {
+  let qArr = [];
+  let currentNode = queue.first;
+
+  while (currentNode) {
+    qArr.push(currentNode.value);
+    currentNode = currentNode.next;
+  }
+  return qArr;
+};
+
+module.exports = { _Node, Queue, displayQ };
